@@ -1,0 +1,9 @@
+node_modules
+dist
+*.local
+*.tsbuildinfo
+.DS_Store
+# ビルド時に Qiita / はてなブログから取得する記事データ
+dev/src/app/data/generated/
+dev/src/public/articles/
+.vite/

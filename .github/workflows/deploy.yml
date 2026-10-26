@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Qiita / はてなブログの新しい記事を反映するため、毎朝 6:00（JST）に再ビルドする
+  schedule:
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # サイトのソースと設定は dev/ にある
+    defaults:
+      run:
+        working-directory: dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # sanitize-html 2.18 以降は Node.js 22.12 以上が必要
+          node-version: 22
+          cache: npm
+          cache-dependency-path: dev/package-lock.json
+      - run: npm ci
+      # 単体テストがすべて通らなければ、ビルド・デプロイしない
+      - run: npm test
+      # prebuild で記事を取得してからビルドする（取得に失敗したらデプロイしない）
+      - run: npm run build
+        env:
+          # 任意: Qiita の読み取り専用トークン（未設定でも動く）
+          QIITA_TOKEN: ${{ secrets.QIITA_TOKEN }}
+          # 公開パス: https://sato-hirotoro.github.io/portfolio/ で公開するため /portfolio/ にする
+          # 独自ドメインを設定したら、この行を消す（ドメインの直下 / で公開されるため）
+          VITE_BASE: /portfolio/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dev/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

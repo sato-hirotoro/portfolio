@@ -1,0 +1,40 @@
+{
+  "configured": true,
+  "profileUrl": "https://qiita.com/test-user",
+  "fetchedAt": "2026-10-25T00:00:00.000Z",
+  "articles": [
+    {
+      "slug": "qiita-3",
+      "floor": 3,
+      "title": "三番目の技術記事",
+      "url": "https://qiita.com/test-user/items/qiita-3",
+      "publishedAt": "2026-10-25T02:40:13+09:00",
+      "tags": ["React", "TypeScript"],
+      "summary": "概要テキスト（カードには出さない）",
+      "thumbnail": null,
+      "likes": 0
+    },
+    {
+      "slug": "qiita-2",
+      "floor": 2,
+      "title": "二番目の技術記事",
+      "url": "https://qiita.com/test-user/items/qiita-2",
+      "publishedAt": "2026-08-31T10:00:00+09:00",
+      "tags": ["Ruby"],
+      "summary": "概要",
+      "thumbnail": null,
+      "likes": 2
+    },
+    {
+      "slug": "qiita-1",
+      "floor": 1,
+      "title": "一番目の技術記事",
+      "url": "https://qiita.com/test-user/items/qiita-1",
+      "publishedAt": "2026-01-05T09:00:00+09:00",
+      "tags": [],
+      "summary": "概要",
+      "thumbnail": null,
+      "likes": 3
+    }
+  ]
+}

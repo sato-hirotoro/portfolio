@@ -1,0 +1,22 @@
+// TypeScript の設定（型チェックだけを行い、変換は Vite に任せる）
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    // 記事データ（data/generated/*.json）を import するため
+    "resolveJsonModule": true,
+    // 型チェックのみ（JS の出力は Vite が行う）
+    "noEmit": true,
+    "types": ["vite/client"]
+  },
+  "include": ["src/app", "vite.config.ts"]
+}

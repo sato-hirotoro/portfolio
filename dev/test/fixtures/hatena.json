@@ -1,0 +1,29 @@
+{
+  "configured": true,
+  "profileUrl": "https://test.hatenablog.com/",
+  "fetchedAt": "2026-10-25T00:00:00.000Z",
+  "articles": [
+    {
+      "slug": "1002",
+      "floor": 2,
+      "title": "静岡に行きました",
+      "url": "https://test.hatenablog.com/entry/2026/10/25/023819",
+      "publishedAt": "2026-10-25T02:38:19+09:00",
+      "tags": ["旅行", "静岡"],
+      "summary": "概要",
+      "thumbnail": "https://cdn.example.com/eyecatch.png",
+      "likes": null
+    },
+    {
+      "slug": "1001",
+      "floor": 1,
+      "title": "はじめての日記",
+      "url": "https://test.hatenablog.com/entry/2026/09/01/120000",
+      "publishedAt": "2026-09-01T12:00:00+09:00",
+      "tags": [],
+      "summary": "概要",
+      "thumbnail": null,
+      "likes": null
+    }
+  ]
+}

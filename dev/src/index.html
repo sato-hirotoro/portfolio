@@ -1,0 +1,28 @@
+<!doctype html>
+<!--
+  サイトの HTML のひな形（Vite のエントリ）
+  中身は app/main.tsx が <div id="root"> に描画する。ファビコン・フォント・ページの説明文はここで指定する
+-->
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="技術記事と日記 — Sato Hiroto のポートフォリオ" />
+    <meta name="theme-color" content="#3b2b5c" />
+    <!-- ファビコン（タブ用）とスマホのホーム画面用アイコン（public/ に置いた PNG） -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Google Fonts: Bungee（看板の英字）/ Dela Gothic One（日本語の見出し）/ DotGothic16（ゲームの文字）/ Zen Kaku Gothic Antique（本文） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Dela+Gothic+One&family=DotGothic16&family=Zen+Kaku+Gothic+Antique:wght@500;700&display=swap"
+    />
+    <title>Home　|　SatoHiroto</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/app/main.tsx"></script>
+  </body>
+</html>

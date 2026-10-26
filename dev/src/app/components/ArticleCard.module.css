@@ -1,0 +1,141 @@
+/* 記事カード: 通路色のパネル（紺の太枠、角は少し丸く） */
+.card {
+  --accent: var(--tower);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.25rem; /* 上にはみ出す階数表示のぶん */
+  padding: 2rem 1.375rem 1.25rem 1.5rem;
+  border: 4px solid var(--tower-dark);
+  border-radius: var(--radius);
+  background: var(--walk);
+  color: var(--ink);
+  text-decoration: none;
+  transition: filter 0.12s;
+}
+
+/* アクセント色（タイトル下の線、タグの枠）は並び順で変える */
+.card:nth-child(4n + 2) { --accent: var(--pink-deep); }
+.card:nth-child(4n + 3) { --accent: var(--earth); }
+.card:nth-child(4n + 4) { --accent: var(--teal-deep); }
+
+/* ホバーで少し明るくする（「すべて見る」ボタンと同じ） */
+.card:hover,
+.card:focus-visible {
+  filter: brightness(1.08);
+}
+
+/* エレベーターの階数表示風（1F, 2F, ...） */
+.floor {
+  position: absolute;
+  top: -1.125rem;
+  left: 1.25rem;
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border: 3px solid var(--tower-dark);
+  border-radius: var(--radius-sm);
+  background: var(--tower);
+}
+
+.floor span {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.875rem;
+  border-radius: 3px;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-sign);
+  font-size: 1.125rem;
+}
+
+/* 階の「F」だけ金色にする */
+.floor span:last-child {
+  background: var(--gold);
+}
+
+.meta {
+  margin: 0 0 -0.5rem; /* タイトルとの間を詰める */
+  color: var(--ink-muted);
+  font-family: var(--font-pixel);
+  font-size: 0.8125rem;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-heavy);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin-top: 0.5rem;
+  background: var(--accent);
+}
+
+/* 本文のかわりの絵文字 */
+.emoji {
+  margin: 0.25rem 0;
+  font-size: 2.75rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0 0.5rem;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--walk-light);
+  color: var(--accent);
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+}
+
+.more {
+  margin-top: auto;
+  color: var(--pink-deep);
+  font-family: var(--font-pixel);
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+/* 「▶ よむ」の ▶ は、カードにホバーしている間だけ点滅する */
+.moreArrow {
+  display: inline-block;
+}
+
+.card:hover .moreArrow,
+.card:focus-visible .moreArrow {
+  animation: arrow-blink 0.6s steps(2, jump-none) infinite alternate;
+}
+
+@keyframes arrow-blink {
+  to {
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover .moreArrow,
+  .card:focus-visible .moreArrow {
+    animation: none;
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "fetch-feeds": "node scripts/fetch-feeds.mjs",
+    "predev": "node scripts/fetch-feeds.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/fetch-feeds.mjs",
+    "build": "tsc -b && vite build && node scripts/copy-404.js",
+    "preview": "vite preview",
+    "pretypecheck": "node scripts/fetch-feeds.mjs",
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^7.6.0"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.3.3",
+    "@types/node": "^20.19.43",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.5.0",
+    "fast-xml-parser": "^5.11.2",
+    "jsdom": "26.1.0",
+    "sanitize-html": "2.18.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "4.1.12"
+  }
+}

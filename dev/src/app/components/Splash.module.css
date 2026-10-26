@@ -1,0 +1,164 @@
+/* オープニング（リムジンが走り抜ける）
+   全体の流れ（--drive = 3 秒）:
+     リムジンが右の画面外から左の画面外まで、一定の速さで走る（真ん中を通るのが 50%）
+     真ん中の少し手前（40〜48%）で、運転席の窓から顔を出す。そのまま走り去る
+   その後 0.4 秒で幕が消え、Home が現れる */
+
+.splash {
+  --drive: 3s;
+
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  overflow: hidden;
+  background: linear-gradient(var(--sky-top), var(--sky-bottom));
+  box-shadow: inset 0 0 0 8px var(--frame);
+  cursor: pointer;
+  animation: splash-out 0.4s ease-in var(--drive) forwards;
+}
+
+/* 道路とリムジンを置く舞台 */
+.stage {
+  position: relative;
+  width: 100%;
+}
+
+/* 道路（白い破線の入った灰色の帯） */
+.road {
+  height: 28px;
+  margin-top: -8px;
+  border-block: 3px solid var(--tower-dark);
+  background:
+    repeating-linear-gradient(90deg, #fff 0 28px, transparent 28px 56px) 0 50% / 100% 3px no-repeat,
+    #5a6080;
+}
+
+/* リムジンの位置（真ん中）。ここを左右に動かして走らせる */
+.car {
+  width: min(560px, 92vw);
+  margin: 0 auto;
+  animation: drive var(--drive) linear both; /* 一定の速さ */
+}
+
+.limo {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+@keyframes drive {
+  from {
+    transform: translateX(calc(50vw + 100%));
+  }
+
+  to {
+    transform: translateX(calc(-50vw - 100%));
+  }
+}
+
+/* 車体が小さく揺れる */
+.body {
+  animation: bounce 0.18s steps(2, jump-none) infinite alternate;
+}
+
+@keyframes bounce {
+  to {
+    transform: translateY(1.5px);
+  }
+}
+
+/* タイヤ: 一定の速さで回る（左へ進むので反時計回り） */
+.wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wheel 0.5s linear infinite;
+}
+
+@keyframes wheel {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* 顔: 真ん中の少し手前で運転席の窓からひょこっと出てきて、そのまま走り去る */
+.face {
+  animation: peek var(--drive) linear both;
+}
+
+@keyframes peek {
+  0%,
+  40% {
+    transform: translateY(100px); /* 窓の下端より下 = 車の中に隠れている */
+  }
+
+  45% {
+    transform: translateY(-8px); /* 勢いよく出て、少し戻る */
+  }
+
+  48%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* マフラーの煙 */
+.puffs {
+  fill: rgb(255 255 255 / 0.8);
+  animation: puff 0.5s ease-out infinite;
+}
+
+@keyframes puff {
+  to {
+    opacity: 0;
+    transform: translate(10px, -6px);
+  }
+}
+
+.loading {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  animation: blink 0.5s steps(2, jump-none) infinite alternate;
+}
+
+@keyframes blink {
+  to {
+    opacity: 0.25;
+  }
+}
+
+@keyframes splash-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* 動きを減らす設定の人には、走らせずに真ん中で顔を出した状態を短く見せて閉じる */
+@media (prefers-reduced-motion: reduce) {
+  .car,
+  .body,
+  .wheel,
+  .puffs,
+  .loading {
+    animation: none;
+  }
+
+  .face {
+    animation: none;
+    transform: none;
+  }
+
+  .splash {
+    animation-duration: 0.2s;
+    animation-delay: 0.8s;
+  }
+}
