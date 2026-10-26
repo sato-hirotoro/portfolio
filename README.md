@@ -1,8 +1,7 @@
 # Portfolio
 
-Sato Hiroto のポートフォリオサイト「NEW HIROTO CITY」。技術記事と日記をまとめている。
-React + TypeScript + Vite で作った静的サイトを、GitHub Pages でホスティングする。
-Tech は Qiita、Diary ははてなブログの記事をビルド時に取得して表示する。
+私のポートフォリオサイト「NEW HIROTO CITY」、技術記事と日記をまとめています。
+[成果物はこちら](https://sato-hirotoro.github.io/portfolio/)
 
 ## ディレクトリ
 
